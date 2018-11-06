@@ -1,5 +1,5 @@
 import { ObjectID } from 'mongodb';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, Inject } from '@nestjs/common';
 import { ProductsRepository } from './products.repository';
 import { Product } from './product.entity';
 import { BusinessException } from './../core/businnes.exception';
@@ -8,9 +8,8 @@ import { ObjectId } from 'mongodb';
 @Injectable()
 export class ProductsService {
 
-  constructor(private productsRepository: ProductsRepository) {
-
-  }
+  @Inject()
+  private productsRepository: ProductsRepository;
 
   findAll(): Promise<Product[]> {
     return this.productsRepository.findAll();
