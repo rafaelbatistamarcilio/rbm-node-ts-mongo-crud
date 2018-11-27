@@ -8,9 +8,8 @@ export class DataSource {
     async connect() {
         if (!this.db) {
             try {
-                Logger.log('CONNECTING DB...');
-                const options: MongoClientOptions = { useNewUrlParser: true, poolSize: 10 };
-                const client = await MongoClient.connect( process.env.DATASOURCE , options);
+                const options: MongoClientOptions = this.getDatasourceOptions();
+                const client = await MongoClient.connect(process.env.DATASOURCE, options);
                 this.db = client.db();
                 Logger.log('DB CONNECTED!');
             } catch (error) {
@@ -22,5 +21,12 @@ export class DataSource {
     async getDb(): Promise<Db> {
         await this.connect();
         return this.db;
+    }
+
+    getDatasourceOptions(): MongoClientOptions {
+        return {
+            useNewUrlParser: true,
+            poolSize: 10,
+        };
     }
 }

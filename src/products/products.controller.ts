@@ -9,8 +9,9 @@ export class ProductsController {
   private readonly productsService: ProductsService;
 
   @Get()
-  findAll(): Promise<Product[]> {
-    return this.productsService.findAll();
+  async findAll(): Promise<Product[]> {
+    const products = await this.productsService.findAll();
+    return products;
   }
 
   @Get('search')
