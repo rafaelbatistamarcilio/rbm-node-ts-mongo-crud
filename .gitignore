@@ -44,3 +44,13 @@ Thumbs.db
 
 /.package-lock.json
 .package-lock.json
+
+#docker
+Dockerfile
+.dockerignore
+.docker-compose.yml
+.docker-compose.debug.yml
+/Dockerfile
+/.dockerignore
+/.docker-compose.yml
+/.docker-compose.debug.yml

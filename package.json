@@ -5,10 +5,9 @@
   "author": "rafael marcilio",
   "license": "MIT",
   "scripts": {
-    "postinstall": "tsc",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start": "node dist/main.js",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && tsc",
@@ -18,40 +17,37 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "webpack": "webpack --config webpack.config.js"
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^5.4.0",
-    "@nestjs/core": "^5.4.0",
-    "@types/mongodb": "^3.1.14",
+    "@nestjs/common": "^6.0.1",
+    "@nestjs/core": "^6.0.1",
+    "@nestjs/platform-express": "^6.0.0",
+    "@types/mongodb": "^3.1.22",
     "class-transformer": "^0.2.0",
     "class-validator": "^0.9.1",
-    "mongodb": "^3.1.10",
-    "reflect-metadata": "^0.1.12",
-    "rxjs": "^6.3.3",
-    "typescript": "^3.1.6"
+    "cors": "^2.8.5",
+    "mongodb": "^3.1.13",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.4.0",
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "^5.4.0",
-    "@types/express": "^4.16.0",
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.10",
-    "@types/supertest": "^2.0.6",
-    "dotenv": "^6.1.0",
-    "jest": "^23.6.0",
-    "nodemon": "^1.18.7",
-    "prettier": "^1.15.2",
-    "rimraf": "^2.6.2",
-    "supertest": "^3.3.0",
-    "ts-jest": "^23.10.5",
-    "ts-loader": "^5.3.1",
-    "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.7.0",
-    "tslint": "5.11.0",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-node-externals": "^1.7.2"
+    "@nestjs/testing": "^6.0.1",
+    "@types/express": "^4.16.1",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.11.4",
+    "@types/supertest": "^2.0.7",
+    "jest": "^24.5.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.3",
+    "tsconfig-paths": "^3.8.0",
+    "tslint": "5.14.0",
+    "typescript": "^3.3.4000"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -68,7 +64,7 @@
     "testEnvironment": "node"
   },
   "engines": {
-    "node": "11.0.0",
-    "npm": "6.4.1"
+    "node": "11.12.0",
+    "npm": "6.7.0"
   }
 }

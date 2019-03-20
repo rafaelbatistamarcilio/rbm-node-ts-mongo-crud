@@ -9,6 +9,7 @@ export class DataSource {
         if (!this.db) {
             try {
                 const options: MongoClientOptions = this.getDatasourceOptions();
+                Logger.log('datasource: ', process.env.DATASOURCE);
                 const client = await MongoClient.connect(process.env.DATASOURCE, options);
                 this.db = client.db();
                 Logger.log('DB CONNECTED!');
